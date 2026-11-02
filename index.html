@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PermLens 权限透镜 — 隐私政策</title>
+  <style>
+    body {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; max-width: 800px; margin: 2rem auto; padding: 0 1rem; color: #1f2937;}
+    h1 {color: #4f46e5; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem;}
+    h2 {color: #374151; margin-top: 2rem;}
+    ul {padding-left: 1.2rem;}
+    .last-updated {color: #6b7280; font-size: 0.9rem;}
+    a {color: #4f46e5;}
+    code {background: #f3f4f6; padding: 0.1rem 0.3rem; border-radius: 4px; font-size: 0.9em;}
+  </style>
+</head>
+<body>
+  <h1>PermLens 权限透镜 — 隐私政策</h1>
+  <p class="last-updated">最后更新：2026 年 11 月</p>
+
+  <h2>概述</h2>
+  <p>PermLens（包名：<code>com.finley.permissionrisk</code>）是一款<strong>完全离线运行</strong>的 Android 应用权限审计工具。我们承诺：<strong>不收集、不存储、不上传、不共享任何用户个人数据或设备数据</strong>。</p>
+
+  <h2>数据收集与使用</h2>
+  <ul>
+    <li><strong>零数据收集</strong>：应用不申请 <code>INTERNET</code> 权限，无法联网，因此无法上传任何数据。</li>
+    <li><strong>本地处理</strong>：扫描结果仅存在于应用运行时内存中，关闭应用即销毁，不写入本地存储、不备份、不同步。</li>
+    <li><strong>无账号体系</strong>：无注册、无登录、无用户标识符（如 Advertising ID、Android ID 等）。</li>
+    <li><strong>无第三方 SDK</strong>：未集成任何分析、广告、崩溃上报、推送等第三方库。</li>
+  </ul>
+
+  <h2>权限说明</h2>
+  <p>应用仅请求以下权限，均用于核心功能的本地实现：</p>
+  <ul>
+    <li><code>QUERY_ALL_PACKAGES</code>：枚举设备上已安装的应用列表（扫描必需）。</li>
+    <li><code>BIND_GET_INSTALL_REFERRER_SERVICE</code>：Google Play 结算库依赖，仅用于应用内购买验证，不上传用户数据。</li>
+  </ul>
+
+  <h2>内购与支付</h2>
+  <p>应用提供一次性内购解锁专业版。支付流程完全由 <strong>Google Play 结算系统</strong> 处理，我们无法访问任何支付凭据、信用卡信息或 Google 账号密码。购买记录仅存储在 Google 账号中，本地仅缓存解锁状态（布尔值），用于离线启动时即时生效。</p>
+
+  <h2>儿童隐私</h2>
+  <p>本应用不面向 13 岁以下儿童，不收集儿童数据。</p>
+
+  <h2>政策变更</h2>
+  <p>如未来功能调整涉及数据处理变更，将在版本更新说明中告知，并同步更新本页面。继续使用即视为接受新版政策。</p>
+
+  <h2>联系我们</h2>
+  <p>如有疑问，可通过以下方式联系：</p>
+  <ul>
+    <li>GitHub：<a href="https://github.com/fanson1/PermissionRisk" target="_blank" rel="noopener">github.com/fanson1/PermissionRisk</a></li>
+    <li>应用内：设置 → 关于 → 联系开发者</li>
+  </ul>
+
+  <hr>
+  <p style="font-size: 0.85rem; color: #6b7280;">
+    English version available below / 提供英文版本：
+  </p>
+
+  <h2>Privacy Policy — PermLens</h2>
+  <p class="last-updated">Last updated: November 2026</p>
+
+  <h2>Overview</h2>
+  <p>PermLens (<code>com.finley.permissionrisk</code>) is an <strong>100% offline</strong> Android permission auditor. We <strong>do not collect, store, upload, or share any personal or device data</strong>.</p>
+
+  <h2>Data Collection & Use</h2>
+  <ul>
+    <li><strong>Zero data collection</strong>: The app does not request the <code>INTERNET</code> permission and cannot communicate over the network.</li>
+    <li><strong>Local-only processing</strong>: Scan results exist only in runtime memory and are destroyed when the app closes. No local persistence, backup, or sync.</li>
+    <li><strong>No accounts</strong>: No registration, login, or user identifiers (Advertising ID, Android ID, etc.).</li>
+    <li><strong>No third-party SDKs</strong>: No analytics, ads, crash reporting, or push libraries.</li>
+  </ul>
+
+  <h2>Permissions</h2>
+  <ul>
+    <li><code>QUERY_ALL_PACKAGES</code>: Enumerate installed apps (required for scanning).</li>
+    <li><code>BIND_GET_INSTALL_REFERRER_SERVICE</code>: Required by Google Play Billing for in-app purchase verification only.</li>
+  </ul>
+
+  <h2>In-App Purchase</h2>
+  <p>One-time lifetime unlock is handled entirely by <strong>Google Play Billing</strong>. We never see payment credentials. Only a local boolean flag (unlocked state) is cached for offline startup.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>Not directed to children under 13. No children's data collected.</p>
+
+  <h2>Changes</h2>
+  <p>Material changes will be noted in release notes and reflected here. Continued use constitutes acceptance.</p>
+
+  <h2>Contact</h2>
+  <ul>
+    <li>GitHub: <a href="https://github.com/fanson1/PermissionRisk" target="_blank" rel="noopener">github.com/fanson1/PermissionRisk</a></li>
+    <li>In-app: Settings → About → Contact Developer</li>
+  </ul>
+</body>
+</html>
