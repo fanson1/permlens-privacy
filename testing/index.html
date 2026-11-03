@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>加入 PermLens 封闭测试 — Join the Closed Test</title>
+  <style>
+    :root {
+      --indigo: #4f46e5;
+      --indigo-dark: #4338ca;
+      --green: #22c55e;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --bg-soft: #f9fafb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.75;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+      color: var(--ink);
+      background: #fff;
+    }
+    header { text-align: center; padding: 1rem 0 2rem; }
+    .logo {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: var(--indigo);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 1.75rem; margin: 0 0 .5rem; color: var(--indigo); }
+    .tagline { color: var(--muted); margin: 0; }
+    .lang-nav { text-align: center; margin: 1.5rem 0 2.5rem; font-size: .95rem; }
+    .lang-nav a {
+      display: inline-block; margin: 0 .4rem; padding: .35rem .9rem;
+      border: 1px solid var(--line); border-radius: 999px;
+      color: var(--indigo); text-decoration: none;
+    }
+    .lang-nav a:hover { background: var(--bg-soft); }
+    h2 {
+      font-size: 1.25rem; margin-top: 2.5rem; padding-bottom: .4rem;
+      border-bottom: 2px solid var(--line);
+    }
+    h3 { font-size: 1.02rem; margin-top: 1.6rem; }
+    p { margin: .6rem 0; }
+    ul, ol { padding-left: 1.35rem; }
+    li { margin: .35rem 0; }
+    a { color: var(--indigo); }
+    code {
+      background: #f3f4f6; padding: .1rem .35rem; border-radius: 4px;
+      font-size: .9em; word-break: break-all;
+    }
+    .cta {
+      display: block; text-align: center; text-decoration: none;
+      background: var(--indigo); color: #fff;
+      padding: .95rem 1.25rem; border-radius: 12px;
+      font-weight: 600; font-size: 1.05rem;
+      margin: 1.5rem 0 .5rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,.08);
+    }
+    .cta:hover { background: var(--indigo-dark); }
+    .cta-note { text-align: center; color: var(--muted); font-size: .88rem; margin-top: 0; }
+    .steps { list-style: none; padding: 0; counter-reset: step; }
+    .steps li {
+      position: relative; padding: .9rem 0 .9rem 3rem;
+      border-bottom: 1px solid var(--line); counter-increment: step;
+    }
+    .steps li:last-child { border-bottom: none; }
+    .steps li::before {
+      content: counter(step);
+      position: absolute; left: 0; top: .85rem;
+      width: 2rem; height: 2rem; border-radius: 50%;
+      background: var(--indigo); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .95rem;
+    }
+    .card {
+      background: var(--bg-soft); border: 1px solid var(--line);
+      border-radius: 12px; padding: 1rem 1.25rem; margin: 1.25rem 0;
+    }
+    .card h3 { margin-top: 0; }
+    .badges { text-align: center; margin: 1.25rem 0; }
+    .badge {
+      display: inline-block; margin: .25rem .3rem; padding: .25rem .7rem;
+      border-radius: 999px; font-size: .82rem;
+      background: #eef2ff; color: var(--indigo-dark); border: 1px solid #e0e7ff;
+    }
+    .badge.green { background: #f0fdf4; color: #15803d; border-color: #dcfce7; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .95rem; }
+    th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--line); }
+    th { background: var(--bg-soft); font-weight: 600; }
+    details {
+      border: 1px solid var(--line); border-radius: 10px;
+      padding: .7rem 1rem; margin: .6rem 0; background: #fff;
+    }
+    details[open] { background: var(--bg-soft); }
+    summary { cursor: pointer; font-weight: 600; }
+    details p, details ul { margin: .6rem 0 0; }
+    footer {
+      margin-top: 3.5rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted); font-size: .88rem; text-align: center;
+    }
+    hr.split { border: none; border-top: 2px dashed var(--line); margin: 3.5rem 0; }
+    @media (max-width: 480px) {
+      body { padding: 1.25rem .9rem 3rem; }
+      h1 { font-size: 1.45rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo" aria-hidden="true">
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="10.5" cy="10.5" r="6.5"></circle>
+      <line x1="15.4" y1="15.4" x2="21" y2="21"></line>
+    </svg>
+  </div>
+  <h1>PermLens 封闭测试</h1>
+  <p class="tagline">离线权限审计工具 · 零联网 · 零数据收集</p>
+</header>
+
+<nav class="lang-nav">
+  <a href="#zh">中文</a>
+  <a href="#en">English</a>
+</nav>
+
+<!-- ============================== 中文 ============================== -->
+<section id="zh">
+
+  <div class="badges">
+    <span class="badge">Android 7.0+</span>
+    <span class="badge">免费参与</span>
+    <span class="badge green">无广告</span>
+    <span class="badge green">无账号</span>
+    <span class="badge green">无 INTERNET 权限</span>
+  </div>
+
+  <p>
+    PermLens 正在 Google Play 进行<strong>封闭测试</strong>。Google 要求新注册的个人开发者账号在申请正式发布前，
+    必须有 <strong>至少 12 名测试者连续参与 14 天</strong>。所以现在非常需要你的帮助——
+    整个流程大约 <strong>2 分钟</strong>，之后只要别卸载就行。
+  </p>
+
+  <a class="cta" href="https://play.google.com/apps/testing/com.finley.permissionrisk">
+    ① 点我成为测试人员
+  </a>
+  <p class="cta-note">打开后点「成为测试人员」，再点页面上的 Play 商店链接安装</p>
+
+  <h2>三步加入</h2>
+  <ol class="steps">
+    <li>
+      <strong>用手机上的 Google 账号打开上面的链接</strong><br>
+      必须是已经在手机「设置 → 账号」里登录的同一个 Google 账号，否则装不上。
+    </li>
+    <li>
+      <strong>点「成为测试人员」，然后从同一页面安装</strong><br>
+      页面下半部分会出现「下载应用」或「在 Google Play 上获取」，点它安装即可。
+    </li>
+    <li>
+      <strong>打开应用，点一次「扫描」，然后保留 14 天</strong><br>
+      不需要每天使用，但<strong>请不要卸载</strong>，卸载会被计为退出测试。
+    </li>
+  </ol>
+
+  <h2>这个应用是做什么的</h2>
+  <p>它帮你查清手机上每个应用到底申请了哪些权限，以及这些权限可能暴露什么隐私。</p>
+  <ul>
+    <li><strong>一键全量扫描</strong>：枚举设备上所有已安装应用（可选择是否包含系统应用）</li>
+    <li><strong>风险分级</strong>：把权限自动归为高 / 中 / 低风险，高危项红色高亮</li>
+    <li><strong>隐私提示</strong>：每条权限说明「可能暴露」什么，例如相机、麦克风、精确位置、通讯录</li>
+    <li><strong>搜索与筛选</strong>：按应用名、包名、权限名搜索；一键只看高危</li>
+    <li><strong>详情页</strong>：单个应用完整权限清单、版本信息、跳转系统设置</li>
+    <li><strong>导出报告</strong>（专业版）：CSV / HTML，便于留存或合规归档</li>
+  </ul>
+
+  <div class="card">
+    <h3>为什么可以放心装</h3>
+    <ul>
+      <li><strong>零联网</strong>：AndroidManifest 中的 <code>INTERNET</code> 权限在构建时被
+        <code>tools:node="remove"</code> 直接删除，应用在系统层面没有联网能力</li>
+      <li><strong>零收集</strong>：无账号、无分析 SDK、无广告、无崩溃上报</li>
+      <li><strong>零持久化</strong>：扫描结果只存在于内存，关闭应用即销毁</li>
+      <li><strong>不收费</strong>：本次测试完全免费，不会扣款，也不需要绑定支付方式</li>
+    </ul>
+    <p style="margin-bottom:0">
+      <a href="https://fanson1.github.io/permlens-privacy/">查看完整隐私政策 →</a>
+    </p>
+  </div>
+
+  <h2>测试期间希望你看一眼的地方</h2>
+  <table>
+    <thead>
+      <tr><th>项目</th><th>想看什么</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>扫描</td><td>能否顺利完成？大概耗时多久、扫出多少个应用？</td></tr>
+      <tr><td>风险分级</td><td>高危 / 中危 / 低危的归类是否符合直觉，有无明显误判？</td></tr>
+      <tr><td>中文翻译</td><td>有没有生硬、错译或漏翻的地方？</td></tr>
+      <tr><td>详情页</td><td>权限列表、隐私提示是否易读？</td></tr>
+      <tr><td>设置与付费墙</td><td>有没有看不懂、点到没反应的地方？</td></tr>
+      <tr><td>稳定性</td><td>崩溃、白屏、布局错位——有截图最好</td></tr>
+    </tbody>
+  </table>
+
+  <h2>常见问题</h2>
+
+  <details>
+    <summary>为什么一定要用 Google 账号？</summary>
+    <p>封闭测试通过 Google Play 分发，只有被加入测试名单、且用对应 Google 账号登录的设备才能安装。
+       这是 Google 的机制，不是我们额外加的限制。</p>
+  </details>
+
+  <details>
+    <summary>国行手机 / 没有 Google 服务能参加吗？</summary>
+    <p>不行。封闭测试包只能通过 Google Play 安装，因此设备需要能正常使用 Play 商店
+       （已安装 Google 服务框架并登录账号）。</p>
+  </details>
+
+  <details>
+    <summary>会扣钱吗？会变成订阅吗？</summary>
+    <p>不会。参与测试不需要任何付费。应用内的「专业版」是一次性买断（非订阅），
+       测试期间你完全可以不碰它。</p>
+  </details>
+
+  <details>
+    <summary>14 天里必须每天打开吗？</summary>
+    <p>不需要每天打开，但需要<strong>保持安装状态</strong>。建议至少每隔几天打开一次，
+       让 Google 的统计能识别为有效测试设备。</p>
+  </details>
+
+  <details>
+    <summary>中途卸载了会怎样？</summary>
+    <p>会从有效测试人数中扣除。如果人数掉到 12 以下，14 天的连续计时会重新开始。
+       所以如果空间紧张，请先删别的应用 🙂</p>
+  </details>
+
+  <details>
+    <summary>测试版和正式版有什么区别？</summary>
+    <p>功能完全一致，只是通过封闭测试轨道分发。正式发布后，你可以直接从 Play 商店正常更新，
+       不需要重新安装，数据（解锁状态）也会保留。</p>
+  </details>
+
+  <details>
+    <summary>我的数据会被收集吗？</summary>
+    <p>不会。应用没有联网能力，也不可能上传任何东西。你能看到的所有信息都只留在你的手机上。</p>
+  </details>
+
+  <h2>怎么反馈问题</h2>
+  <ul>
+    <li><strong>最方便</strong>：直接回复我发你的那封邀请邮件</li>
+    <li><strong>附上这些信息会很有帮助</strong>：手机型号、Android 版本、截图、复现步骤</li>
+    <li>如果只想说「装好了，没问题」，那也请回一句，我好确认人数</li>
+  </ul>
+
+</section>
+
+<hr class="split">
+
+<!-- ============================== English ============================== -->
+<section id="en" lang="en">
+
+  <h1 style="font-size:1.5rem; text-align:center;">Join the PermLens closed test</h1>
+  <p style="text-align:center; color:var(--muted); margin-top:0;">
+    Offline permission auditor · no network · no data collection
+  </p>
+
+  <div class="badges">
+    <span class="badge">Android 7.0+</span>
+    <span class="badge">Free to join</span>
+    <span class="badge green">No ads</span>
+    <span class="badge green">No account</span>
+    <span class="badge green">No INTERNET permission</span>
+  </div>
+
+  <p>
+    PermLens is in <strong>closed testing</strong> on Google Play. Google requires new personal
+    developer accounts to run a closed test with <strong>at least 12 testers for 14 continuous
+    days</strong> before they can ship to production. That's why I need your help — the whole
+    process takes about <strong>2 minutes</strong>, and after that you only need to keep the app
+    installed.
+  </p>
+
+  <a class="cta" href="https://play.google.com/apps/testing/com.finley.permissionrisk">
+    ① Become a tester
+  </a>
+  <p class="cta-note">Then tap the Play Store link on the same page to install</p>
+
+  <h2>Three steps</h2>
+  <ol class="steps">
+    <li>
+      <strong>Open the link above with the Google account signed in on your phone</strong><br>
+      It must be the same account added under Settings → Accounts, otherwise the install will fail.
+    </li>
+    <li>
+      <strong>Tap “Become a tester”, then install from the same page</strong><br>
+      A “Download it on Google Play” link appears further down the page.
+    </li>
+    <li>
+      <strong>Open the app, tap “Scan” once, and keep it for 14 days</strong><br>
+      No daily use required — but please <strong>don't uninstall</strong>, that counts as leaving the test.
+    </li>
+  </ol>
+
+  <h2>What the app does</h2>
+  <ul>
+    <li><strong>Full scan</strong> — enumerate every installed app in one tap (system apps optional)</li>
+    <li><strong>Risk grading</strong> — permissions classified High / Medium / Low, high-risk highlighted in red</li>
+    <li><strong>Privacy hints</strong> — each permission explains what it may expose (camera, mic, precise location, contacts…)</li>
+    <li><strong>Search &amp; filter</strong> — by app name, package name or permission; show high-risk only</li>
+    <li><strong>Detail page</strong> — full permission list per app, version info, shortcut to system settings</li>
+    <li><strong>Export</strong> (Pro) — CSV / HTML reports for archiving or compliance</li>
+  </ul>
+
+  <div class="card">
+    <h3>Why it's safe to install</h3>
+    <ul>
+      <li><strong>No network</strong> — the <code>INTERNET</code> permission is stripped at build time via
+        <code>tools:node="remove"</code>, so the app has no network capability at the OS level</li>
+      <li><strong>No collection</strong> — no accounts, analytics, ads or crash reporting</li>
+      <li><strong>No persistence</strong> — results live in memory only and are gone when the app closes</li>
+      <li><strong>No payment</strong> — testing is free; nothing is charged and no payment method is needed</li>
+    </ul>
+    <p style="margin-bottom:0">
+      <a href="https://fanson1.github.io/permlens-privacy/">Read the full privacy policy →</a>
+    </p>
+  </div>
+
+  <h2>What to look at during the test</h2>
+  <table>
+    <thead>
+      <tr><th>Area</th><th>What I'd like to know</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Scan</td><td>Did it complete? Roughly how long, and how many apps?</td></tr>
+      <tr><td>Risk grading</td><td>Do High / Medium / Low classifications make sense? Any obvious mistakes?</td></tr>
+      <tr><td>Translation</td><td>Awkward wording, mistranslations or missing strings?</td></tr>
+      <tr><td>Detail page</td><td>Is the permission list and privacy hint readable?</td></tr>
+      <tr><td>Settings &amp; paywall</td><td>Anything confusing or unresponsive?</td></tr>
+      <tr><td>Stability</td><td>Crashes, blank screens, layout glitches — screenshots help</td></tr>
+    </tbody>
+  </table>
+
+  <h2>FAQ</h2>
+
+  <details>
+    <summary>Why does it require a Google account?</summary>
+    <p>Closed tests are distributed through Google Play, and only devices signed in with a
+       whitelisted Google account can install the build. That's Google's mechanism, not an
+       extra restriction.</p>
+  </details>
+
+  <details>
+    <summary>Will I be charged? Is it a subscription?</summary>
+    <p>No. Testing is completely free. The in-app “Pro” upgrade is a one-time purchase
+       (not a subscription), and you don't need to touch it at all during the test.</p>
+  </details>
+
+  <details>
+    <summary>Do I have to open the app every day for 14 days?</summary>
+    <p>Not every day, but the app must stay <strong>installed</strong>. Opening it every few days
+       helps Google register it as an active test device.</p>
+  </details>
+
+  <details>
+    <summary>What happens if I uninstall it?</summary>
+    <p>You're removed from the active tester count. If it drops below 12, the 14-day clock
+       restarts. So if you're short on storage, please delete something else 🙂</p>
+  </details>
+
+  <details>
+    <summary>Is the test build different from the release build?</summary>
+    <p>Functionally identical — it's just delivered through the closed testing track. When the
+       app goes live you can update normally from the Play Store without reinstalling.</p>
+  </details>
+
+  <details>
+    <summary>Is any of my data collected?</summary>
+    <p>No. The app has no network capability, so it cannot upload anything. Everything you see
+       stays on your device.</p>
+  </details>
+
+  <h2>How to send feedback</h2>
+  <ul>
+    <li><strong>Easiest</strong>: just reply to the invitation email I sent you</li>
+    <li><strong>Helpful details</strong>: device model, Android version, screenshot, reproduction steps</li>
+    <li>A simple “installed and it works” is also useful — it helps me confirm the count</li>
+  </ul>
+
+</section>
+
+<footer>
+  <p>
+    <a href="https://fanson1.github.io/permlens-privacy/">隐私政策 / Privacy Policy</a>
+  </p>
+  <p>PermLens · <code>com.finley.permissionrisk</code></p>
+</footer>
+
+</body>
+</html>
